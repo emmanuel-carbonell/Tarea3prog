@@ -1,0 +1,61 @@
+﻿@model Tarea3prog.Models.Empleado
+
+@{
+    ViewBag.Title = "Datos";
+}
+
+
+
+
+<h2>Datos</h2>
+<form action="Resultados" method="post">
+
+    <input type="number" name="id" class="form-control" placeholder="Inserte su Id" />
+    <input type="number" name="cedula" class="form-control" placeholder="Inserte su Cedula" required />
+    <input type="text" name="nombre" class="form-control" placeholder="Inserte su Nombre" required />
+    <input type="text" name="apellido" class="form-control" placeholder="Inserte su Apellido" required />
+    <input type="text" name="email" class="form-control" placeholder="Inserte su Email" />
+    <input type="number" name="telefono" class="form-control" placeholder="Inserte su Telefono" />
+    <input type="text" name="departamento" class="form-control" placeholder="Inserte su Departamento" />
+    <input type="text" name="cargo" class="form-control" placeholder="Inserte su Cargo" />
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoriaEmpleado, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.CategoriaEmpleado, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoriaEmpleado, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+        </div>
+
+    }
+
+
+
+
+
+
+
+    <input type="submit" value="Enviar" />
+
+
+
+
+
+
+
+
+</form>
